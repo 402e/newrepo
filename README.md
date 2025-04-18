@@ -1,64 +1,60 @@
-newrepo
+# newrepo
 
-newrepo is a simple Zsh script that automates the creation of a new GitHub repository from the command line.It initializes a local Git repository, makes the first commit, and pushes it to GitHub using the GitHub CLI (gh).
+**newrepo** is a simple Zsh script that automates the creation of a new GitHub repository from the command line.
+It initializes a local Git repository, creates the first commit, and pushes it to GitHub using the [GitHub CLI (`gh`)](https://cli.github.com/).
 
-Features
+---
 
-Automatically initializes a Git repository
+## Features
 
-Creates a new GitHub repository via gh
+- Initializes a Git repository if not present
+- Creates a GitHub repository via `gh`
+- Pushes the initial commit
+- Checks for existing commits to avoid duplicates
+- Uses the current folder name or a provided name for the repo
 
-Adds a remote and pushes the initial commit
+---
 
-Checks for existing commits to avoid duplicate initialization
+## Requirements
 
-Uses the current directory name as the repo name (or custom name if provided)
+- [`zsh`](https://www.zsh.org/)
+- [`git`](https://git-scm.com/)
+- [`gh`](https://cli.github.com/) (GitHub CLI, authenticated)
 
-Requirements
+---
 
-zsh
+## Dependency Installation
 
-git
+For Arch Linux:
 
-gh (GitHub CLI, authenticated)
-
-Dependency Installation
-
-Install the required dependencies using your package manager. For example, on Arch Linux:
-
+```bash
 sudo pacman -S zsh git github-cli
+```
 
-Make sure the GitHub CLI is authenticated:
+Then authenticate gh:
 
+```bash
 gh auth login
+```
 
-Usage
+## Usage
 
-Navigate to the project directory and run:
+```bash
+newrepo [repository-name] [--option value]
+```
 
-newrepo [repository-name] [--private] [--description "Your repo description"]
+If no repository name is provided, the current directory name is used.
 
-If [repository-name] is not provided, the script uses the name of the current directory.
+### Option
 
-Options
+| Option           | Description                         |
+|------------------|-------------------------------------|
+| --private        | Create a private GitHub repository  |
+| --description "" | Add a description to the repository |
 
---private — create a private GitHub repository
+Example
+`newrepo my-project --private --description "My personal tool"`
 
---description "description" — add a description to the repository
+## License
 
-The script will:
-
-Use the current folder name or given argument as the repository name
-
-Create the repository on GitHub
-
-Initialize a Git repository if one doesn't exist
-
-Make the initial commit if there are no commits yet
-
-Push the code to the new GitHub repository
-
-License
-
-MIT — see LICENSE for details.
-
+This project is licensed under the MIT License.
